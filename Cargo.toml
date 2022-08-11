@@ -1,8 +1,11 @@
 [package]
 name = "p7m-alarm"
+description = "Rust bindings for the alarm API of P7M"
 version = "0.1.0"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/projekt7m/alarm-rust"
 
 [dependencies]
 serde = "^1.0"
@@ -11,6 +14,7 @@ serde_json = "^1.0"
 url = "^2.2"
 [dependencies.reqwest]
 version = "^0.11"
-features = ["json", "multipart"]
+default-features = false
+features = ["json", "multipart", "rustls-tls"]
 
 [dev-dependencies]
