@@ -1,7 +1,7 @@
 [package]
 name = "p7m-alarm"
 description = "Rust bindings for the alarm API of P7M"
-version = "0.1.0"
+version = "0.2.1"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
 license = "Apache-2.0"

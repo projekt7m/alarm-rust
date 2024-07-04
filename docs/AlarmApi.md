@@ -4,20 +4,50 @@ All URIs are relative to *https://alarm.api.p7m.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alarms_get**](AlarmApi.md#alarms_get) | **GET** /alarms | 
-[**alarms_id_delete**](AlarmApi.md#alarms_id_delete) | **DELETE** /alarms/{id} | 
-[**alarms_id_get**](AlarmApi.md#alarms_id_get) | **GET** /alarms/{id} | 
-[**alarms_id_put**](AlarmApi.md#alarms_id_put) | **PUT** /alarms/{id} | 
-[**alarms_post**](AlarmApi.md#alarms_post) | **POST** /alarms | 
+[**delete_alarms_id**](AlarmApi.md#delete_alarms_id) | **DELETE** /alarms/{id} | Delete an alarm by its ID
+[**get_alarms**](AlarmApi.md#get_alarms) | **GET** /alarms | Get a list of all alarms
+[**get_alarms_id**](AlarmApi.md#get_alarms_id) | **GET** /alarms/{id} | Get a single alarm by its ID
+[**post_alarm**](AlarmApi.md#post_alarm) | **POST** /alarms | Create a new alarm and by that trigger signalling
+[**put_alarms_id**](AlarmApi.md#put_alarms_id) | **PUT** /alarms/{id} | Update an existing alarm
 
 
 
-## alarms_get
+## delete_alarms_id
 
-> crate::models::AlarmData alarms_get()
+> delete_alarms_id(id)
+Delete an alarm by its ID
+
+Delete an alarm by its ID  This does not cancel the alarm! Use PUT for canceling.
+
+### Parameters
 
 
-an alarm tracks the progress of a Telfas emergency message
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | ID of the alarm | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauth](../README.md#oauth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_alarms
+
+> crate::models::AlarmData get_alarms()
+Get a list of all alarms
+
+Get a list of all alarms
 
 ### Parameters
 
@@ -29,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -39,49 +69,19 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarms_id_delete
+## get_alarms_id
 
-> alarms_id_delete(id)
+> crate::models::Alarm get_alarms_id(id)
+Get a single alarm by its ID
 
-
-deletes the given alarm
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm id | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alarms_id_get
-
-> crate::models::Alarm alarms_id_get(id)
-
-
-Returns the given alarm
+Get a single alarm by its ID
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm id | [required] |
+**id** | **String** | ID of the alarm | [required] |
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -99,20 +99,19 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarms_id_put
+## post_alarm
 
-> crate::models::Alarm alarms_id_put(id, new_alarm)
+> crate::models::Alarm post_alarm(new_alarm)
+Create a new alarm and by that trigger signalling
 
-
-updates the given alarm
+Create a new alarm and by that trigger signalling
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm id | [required] |
-**new_alarm** | [**NewAlarm**](NewAlarm.md) | the updated alarm | [required] |
+**new_alarm** | [**NewAlarm**](NewAlarm.md) | The alarm to be created | [required] |
 
 ### Return type
 
@@ -120,7 +119,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -130,19 +129,20 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarms_post
+## put_alarms_id
 
-> crate::models::Alarm alarms_post(new_alarm)
+> crate::models::Alarm put_alarms_id(id, new_alarm)
+Update an existing alarm
 
-
-creates a new alarm
+Update an existing alarm  Can be used for canceling the alarm by setting the field cancellation_time to a value.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**new_alarm** | [**NewAlarm**](NewAlarm.md) | the alarm to be created | [required] |
+**id** | **String** | ID of the alarm | [required] |
+**new_alarm** | [**NewAlarm**](NewAlarm.md) | The updated alarm | [required] |
 
 ### Return type
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 

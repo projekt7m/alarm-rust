@@ -1,11 +1,13 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 Cargo.toml
 README.md
 docs/Alarm.md
 docs/AlarmApi.md
+docs/AlarmConfirmation.md
 docs/AlarmData.md
+docs/AlarmGuidance.md
+docs/AlarmMedium.md
 docs/AlarmRecipient.md
 docs/AlarmRecipientApi.md
 docs/AlarmRecipientData.md
@@ -23,7 +25,10 @@ src/apis/configuration.rs
 src/apis/mod.rs
 src/lib.rs
 src/models/alarm.rs
+src/models/alarm_confirmation.rs
 src/models/alarm_data.rs
+src/models/alarm_guidance.rs
+src/models/alarm_medium.rs
 src/models/alarm_recipient.rs
 src/models/alarm_recipient_data.rs
 src/models/alarm_type.rs

@@ -4,20 +4,50 @@ All URIs are relative to *https://alarm.api.p7m.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alarmtypes_get**](AlarmTypeApi.md#alarmtypes_get) | **GET** /alarmtypes | 
-[**alarmtypes_id_delete**](AlarmTypeApi.md#alarmtypes_id_delete) | **DELETE** /alarmtypes/{id} | 
-[**alarmtypes_id_get**](AlarmTypeApi.md#alarmtypes_id_get) | **GET** /alarmtypes/{id} | 
-[**alarmtypes_id_put**](AlarmTypeApi.md#alarmtypes_id_put) | **PUT** /alarmtypes/{id} | 
-[**alarmtypes_post**](AlarmTypeApi.md#alarmtypes_post) | **POST** /alarmtypes | 
+[**delete_alarm_types**](AlarmTypeApi.md#delete_alarm_types) | **DELETE** /alarmtypes/{id} | Delete a single alarm type by its ID
+[**get_alarm_types**](AlarmTypeApi.md#get_alarm_types) | **GET** /alarmtypes | Get list of all alarm types
+[**get_alarm_types_id**](AlarmTypeApi.md#get_alarm_types_id) | **GET** /alarmtypes/{id} | Get a single alarm type by its ID
+[**post_alarm_types**](AlarmTypeApi.md#post_alarm_types) | **POST** /alarmtypes | Create a new alarm type
+[**put_alarm_types**](AlarmTypeApi.md#put_alarm_types) | **PUT** /alarmtypes/{id} | Update an existing alarm type
 
 
 
-## alarmtypes_get
+## delete_alarm_types
 
-> crate::models::AlarmTypeData alarmtypes_get()
+> delete_alarm_types(id)
+Delete a single alarm type by its ID
+
+Delete a single alarm type by its ID
+
+### Parameters
 
 
-an alarm type is a template for generating alarm
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | ID of the alarm type | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauth](../README.md#oauth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_alarm_types
+
+> crate::models::AlarmTypeData get_alarm_types()
+Get list of all alarm types
+
+Get list of all alarm types
 
 ### Parameters
 
@@ -29,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -39,49 +69,19 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarmtypes_id_delete
+## get_alarm_types_id
 
-> alarmtypes_id_delete(id)
+> crate::models::AlarmType get_alarm_types_id(id)
+Get a single alarm type by its ID
 
-
-deletes the given alarm type
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm type id | [required] |
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alarmtypes_id_get
-
-> crate::models::AlarmType alarmtypes_id_get(id)
-
-
-Returns the given alarm type
+Get a single alarm type by its ID
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm type id | [required] |
+**id** | **String** | ID of the alarm type | [required] |
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -99,20 +99,19 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarmtypes_id_put
+## post_alarm_types
 
-> crate::models::AlarmType alarmtypes_id_put(id, new_alarm_type)
+> crate::models::AlarmType post_alarm_types(new_alarm_type)
+Create a new alarm type
 
-
-updates the given alarm type
+Create a new alarm type
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | alarm type id | [required] |
-**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | the updated alarm type | [required] |
+**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | The alarm type to be created. | [required] |
 
 ### Return type
 
@@ -120,7 +119,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -130,19 +129,20 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## alarmtypes_post
+## put_alarm_types
 
-> crate::models::AlarmType alarmtypes_post(new_alarm_type)
+> crate::models::AlarmType put_alarm_types(id, new_alarm_type)
+Update an existing alarm type
 
-
-creates a new alarm type
+Update an existing alarm type
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | the alarm type to be created | [required] |
+**id** | **String** | ID of the alarm type | [required] |
+**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | The updated alarm type | [required] |
 
 ### Return type
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 

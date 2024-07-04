@@ -1,7 +1,13 @@
 pub mod alarm;
 pub use self::alarm::Alarm;
+pub mod alarm_confirmation;
+pub use self::alarm_confirmation::AlarmConfirmation;
 pub mod alarm_data;
 pub use self::alarm_data::AlarmData;
+pub mod alarm_guidance;
+pub use self::alarm_guidance::AlarmGuidance;
+pub mod alarm_medium;
+pub use self::alarm_medium::AlarmMedium;
 pub mod alarm_recipient;
 pub use self::alarm_recipient::AlarmRecipient;
 pub mod alarm_recipient_data;

@@ -11,8 +11,9 @@ Name | Type | Description | Notes
 **send_call** | **bool** |  | 
 **send_sms** | **bool** |  | 
 **send_app** | **bool** |  | 
-**guidance** | **String** |  | 
+**guidance** | [**crate::models::AlarmGuidance**](AlarmGuidance.md) |  | 
 **trigger_time** | **String** |  | 
+**trigger_name** | **String** |  | 
 **trigger_account_id** | Option<**String**> |  | [optional]
 **cancellation_time** | Option<**String**> |  | [optional]
 **cancellation_account_id** | Option<**String**> |  | [optional]
