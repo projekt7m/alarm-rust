@@ -12,7 +12,11 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct NewAlarm {
+pub struct ListWrapperAlarmDataInner {
+    #[serde(rename = "alarmId")]
+    pub alarm_id: uuid::Uuid,
+    #[serde(rename = "tenantId")]
+    pub tenant_id: uuid::Uuid,
     #[serde(rename = "alarmTypeId")]
     pub alarm_type_id: uuid::Uuid,
     #[serde(rename = "label")]
@@ -27,19 +31,23 @@ pub struct NewAlarm {
     pub guidance: models::AlarmGuidance,
     #[serde(rename = "triggerTime")]
     pub trigger_time: String,
-    #[serde(rename = "triggerName", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub trigger_name: Option<Option<String>>,
+    #[serde(rename = "triggerName")]
+    pub trigger_name: String,
     #[serde(rename = "triggerAccountId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub trigger_account_id: Option<Option<uuid::Uuid>>,
     #[serde(rename = "cancellationTime", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub cancellation_time: Option<Option<String>>,
     #[serde(rename = "cancellationAccountId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub cancellation_account_id: Option<Option<uuid::Uuid>>,
+    #[serde(rename = "lastChange")]
+    pub last_change: String,
 }
 
-impl NewAlarm {
-    pub fn new(alarm_type_id: uuid::Uuid, label: String, send_call: bool, send_sms: bool, send_app: bool, guidance: models::AlarmGuidance, trigger_time: String) -> NewAlarm {
-        NewAlarm {
+impl ListWrapperAlarmDataInner {
+    pub fn new(alarm_id: uuid::Uuid, tenant_id: uuid::Uuid, alarm_type_id: uuid::Uuid, label: String, send_call: bool, send_sms: bool, send_app: bool, guidance: models::AlarmGuidance, trigger_time: String, trigger_name: String, last_change: String) -> ListWrapperAlarmDataInner {
+        ListWrapperAlarmDataInner {
+            alarm_id,
+            tenant_id,
             alarm_type_id,
             label,
             send_call,
@@ -47,10 +55,11 @@ impl NewAlarm {
             send_app,
             guidance,
             trigger_time,
-            trigger_name: None,
+            trigger_name,
             trigger_account_id: None,
             cancellation_time: None,
             cancellation_account_id: None,
+            last_change,
         }
     }
 }

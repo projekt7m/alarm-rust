@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**alarm_recipient_id** | **String** |  | 
-**tenant_id** | **String** |  | 
-**alarm_id** | **String** |  | 
-**account_id** | **String** |  | 
-**medium** | [**crate::models::AlarmMedium**](AlarmMedium.md) |  | 
-**address** | **String** |  | 
+**alarm_recipient_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**tenant_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**alarm_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**recipient_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**medium** | [**models::AlarmMedium**](AlarmMedium.md) |  | 
+**phone_number** | **String** |  | 
 **submission_time** | Option<**String**> |  | [optional]
 **delivery_time** | Option<**String**> |  | [optional]
-**confirmation** | Option<[**crate::models::AlarmConfirmation**](AlarmConfirmation.md)> |  | [optional]
+**confirmation** | Option<[**models::AlarmConfirmation**](AlarmConfirmation.md)> |  | [optional]
 **confirmation_time** | Option<**String**> |  | [optional]
 **last_change** | **String** |  | 
 

@@ -1,17 +1,15 @@
-# NewAlarmType
+# NewRecipient
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**label** | **String** |  | 
-**send_call** | **bool** |  | 
+**name** | **String** |  | 
+**additional_info** | **String** |  | 
+**phone_number** | **String** |  | 
 **send_sms** | **bool** |  | 
-**send_app** | **bool** |  | 
-**guidance** | [**models::AlarmGuidance**](AlarmGuidance.md) |  | 
-**call_text** | **String** |  | 
-**callback_text** | **String** |  | 
-**sms_text** | **String** |  | 
+**send_call** | **bool** |  | 
+**active** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

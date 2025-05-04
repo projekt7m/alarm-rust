@@ -15,52 +15,57 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
-/// struct for typed errors of method [`delete_alarm_types`]
+/// struct for typed errors of method [`delete_recipients_recipient_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DeleteAlarmTypesError {
+pub enum DeleteRecipientsRecipientIdError {
+    Status403(),
+    Status404(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_recipients`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRecipientsError {
+    Status403(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_recipients_recipient_id`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRecipientsRecipientIdError {
+    Status403(),
+    Status404(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`post_recipients`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PostRecipientsError {
     Status400(),
-    Status404(),
+    Status403(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_alarm_types`]
+/// struct for typed errors of method [`put_recipients_recipient_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetAlarmTypesError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`get_alarm_types_id`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetAlarmTypesIdError {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`post_alarm_types`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PostAlarmTypesError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`put_alarm_types`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PutAlarmTypesError {
+pub enum PutRecipientsRecipientIdError {
     Status400(),
+    Status403(),
     Status404(),
     UnknownValue(serde_json::Value),
 }
 
 
-pub async fn delete_alarm_types(configuration: &configuration::Configuration, id: &str) -> Result<(), Error<DeleteAlarmTypesError>> {
+pub async fn delete_recipients_recipient_id(configuration: &configuration::Configuration, recipient_id: &str) -> Result<(), Error<DeleteRecipientsRecipientIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_recipient_id = recipient_id;
 
-    let uri_str = format!("{}/alarmtypes/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/recipients/{recipient_id}", configuration.base_path, recipient_id=crate::apis::urlencode(p_recipient_id));
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -79,14 +84,14 @@ pub async fn delete_alarm_types(configuration: &configuration::Configuration, id
         Ok(())
     } else {
         let content = resp.text().await?;
-        let entity: Option<DeleteAlarmTypesError> = serde_json::from_str(&content).ok();
+        let entity: Option<DeleteRecipientsRecipientIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
 
-pub async fn get_alarm_types(configuration: &configuration::Configuration, ) -> Result<models::ListWrapperAlarmType, Error<GetAlarmTypesError>> {
+pub async fn get_recipients(configuration: &configuration::Configuration, ) -> Result<models::ListWrapperRecipient, Error<GetRecipientsError>> {
 
-    let uri_str = format!("{}/alarmtypes", configuration.base_path);
+    let uri_str = format!("{}/recipients", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -111,21 +116,21 @@ pub async fn get_alarm_types(configuration: &configuration::Configuration, ) -> 
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListWrapperAlarmType`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListWrapperAlarmType`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListWrapperRecipient`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListWrapperRecipient`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<GetAlarmTypesError> = serde_json::from_str(&content).ok();
+        let entity: Option<GetRecipientsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
 
-pub async fn get_alarm_types_id(configuration: &configuration::Configuration, id: &str) -> Result<models::AlarmType, Error<GetAlarmTypesIdError>> {
+pub async fn get_recipients_recipient_id(configuration: &configuration::Configuration, recipient_id: &str) -> Result<models::Recipient, Error<GetRecipientsRecipientIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_recipient_id = recipient_id;
 
-    let uri_str = format!("{}/alarmtypes/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/recipients/{recipient_id}", configuration.base_path, recipient_id=crate::apis::urlencode(p_recipient_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -150,21 +155,21 @@ pub async fn get_alarm_types_id(configuration: &configuration::Configuration, id
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AlarmType`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AlarmType`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Recipient`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Recipient`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<GetAlarmTypesIdError> = serde_json::from_str(&content).ok();
+        let entity: Option<GetRecipientsRecipientIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
 
-pub async fn post_alarm_types(configuration: &configuration::Configuration, new_alarm_type: models::NewAlarmType) -> Result<models::AlarmType, Error<PostAlarmTypesError>> {
+pub async fn post_recipients(configuration: &configuration::Configuration, new_recipient: models::NewRecipient) -> Result<models::Recipient, Error<PostRecipientsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_new_alarm_type = new_alarm_type;
+    let p_new_recipient = new_recipient;
 
-    let uri_str = format!("{}/alarmtypes", configuration.base_path);
+    let uri_str = format!("{}/recipients", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -173,7 +178,7 @@ pub async fn post_alarm_types(configuration: &configuration::Configuration, new_
     if let Some(ref token) = configuration.oauth_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_new_alarm_type);
+    req_builder = req_builder.json(&p_new_recipient);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -190,22 +195,22 @@ pub async fn post_alarm_types(configuration: &configuration::Configuration, new_
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AlarmType`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AlarmType`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Recipient`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Recipient`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<PostAlarmTypesError> = serde_json::from_str(&content).ok();
+        let entity: Option<PostRecipientsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }
 
-pub async fn put_alarm_types(configuration: &configuration::Configuration, id: &str, new_alarm_type: models::NewAlarmType) -> Result<models::AlarmType, Error<PutAlarmTypesError>> {
+pub async fn put_recipients_recipient_id(configuration: &configuration::Configuration, recipient_id: &str, new_recipient: models::NewRecipient) -> Result<models::Recipient, Error<PutRecipientsRecipientIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_new_alarm_type = new_alarm_type;
+    let p_recipient_id = recipient_id;
+    let p_new_recipient = new_recipient;
 
-    let uri_str = format!("{}/alarmtypes/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/recipients/{recipient_id}", configuration.base_path, recipient_id=crate::apis::urlencode(p_recipient_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -214,7 +219,7 @@ pub async fn put_alarm_types(configuration: &configuration::Configuration, id: &
     if let Some(ref token) = configuration.oauth_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_new_alarm_type);
+    req_builder = req_builder.json(&p_new_recipient);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -231,12 +236,12 @@ pub async fn put_alarm_types(configuration: &configuration::Configuration, id: &
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AlarmType`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AlarmType`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Recipient`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Recipient`")))),
         }
     } else {
         let content = resp.text().await?;
-        let entity: Option<PutAlarmTypesError> = serde_json::from_str(&content).ok();
+        let entity: Option<PutRecipientsRecipientIdError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

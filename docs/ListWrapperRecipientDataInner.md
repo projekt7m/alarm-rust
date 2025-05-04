@@ -1,19 +1,17 @@
-# AlarmType
+# ListWrapperRecipientDataInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**alarm_type_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**recipient_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **tenant_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**label** | **String** |  | 
-**send_call** | **bool** |  | 
+**name** | **String** |  | 
+**additional_info** | **String** |  | 
+**phone_number** | **String** |  | 
 **send_sms** | **bool** |  | 
-**send_app** | **bool** |  | 
-**guidance** | [**models::AlarmGuidance**](AlarmGuidance.md) |  | 
-**call_text** | **String** |  | 
-**callback_text** | **String** |  | 
-**sms_text** | **String** |  | 
+**send_call** | **bool** |  | 
+**active** | **bool** |  | 
 **last_change** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

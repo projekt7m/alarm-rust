@@ -12,7 +12,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct AlarmRecipient {
+pub struct ListWrapperAlarmRecipientDataInner {
     #[serde(rename = "alarmRecipientId")]
     pub alarm_recipient_id: uuid::Uuid,
     #[serde(rename = "tenantId")]
@@ -37,9 +37,9 @@ pub struct AlarmRecipient {
     pub last_change: String,
 }
 
-impl AlarmRecipient {
-    pub fn new(alarm_recipient_id: uuid::Uuid, tenant_id: uuid::Uuid, alarm_id: uuid::Uuid, recipient_id: uuid::Uuid, medium: models::AlarmMedium, phone_number: String, last_change: String) -> AlarmRecipient {
-        AlarmRecipient {
+impl ListWrapperAlarmRecipientDataInner {
+    pub fn new(alarm_recipient_id: uuid::Uuid, tenant_id: uuid::Uuid, alarm_id: uuid::Uuid, recipient_id: uuid::Uuid, medium: models::AlarmMedium, phone_number: String, last_change: String) -> ListWrapperAlarmRecipientDataInner {
+        ListWrapperAlarmRecipientDataInner {
             alarm_recipient_id,
             tenant_id,
             alarm_id,

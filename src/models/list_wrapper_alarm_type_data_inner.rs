@@ -12,7 +12,11 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct NewAlarmType {
+pub struct ListWrapperAlarmTypeDataInner {
+    #[serde(rename = "alarmTypeId")]
+    pub alarm_type_id: uuid::Uuid,
+    #[serde(rename = "tenantId")]
+    pub tenant_id: uuid::Uuid,
     #[serde(rename = "label")]
     pub label: String,
     #[serde(rename = "sendCall")]
@@ -29,11 +33,15 @@ pub struct NewAlarmType {
     pub callback_text: String,
     #[serde(rename = "smsText")]
     pub sms_text: String,
+    #[serde(rename = "lastChange")]
+    pub last_change: String,
 }
 
-impl NewAlarmType {
-    pub fn new(label: String, send_call: bool, send_sms: bool, send_app: bool, guidance: models::AlarmGuidance, call_text: String, callback_text: String, sms_text: String) -> NewAlarmType {
-        NewAlarmType {
+impl ListWrapperAlarmTypeDataInner {
+    pub fn new(alarm_type_id: uuid::Uuid, tenant_id: uuid::Uuid, label: String, send_call: bool, send_sms: bool, send_app: bool, guidance: models::AlarmGuidance, call_text: String, callback_text: String, sms_text: String, last_change: String) -> ListWrapperAlarmTypeDataInner {
+        ListWrapperAlarmTypeDataInner {
+            alarm_type_id,
+            tenant_id,
             label,
             send_call,
             send_sms,
@@ -42,6 +50,7 @@ impl NewAlarmType {
             call_text,
             callback_text,
             sms_text,
+            last_change,
         }
     }
 }

@@ -1,4 +1,4 @@
-# AlarmType
+# ListWrapperAlarmTypeDataInner
 
 ## Properties
 

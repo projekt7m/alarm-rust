@@ -1,28 +1,28 @@
-# \AlarmTypeApi
+# \RecipientApi
 
 All URIs are relative to *https://alarm.api.p7m.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_alarm_types**](AlarmTypeApi.md#delete_alarm_types) | **DELETE** /alarmtypes/{id} | Delete a single alarm type by its ID
-[**get_alarm_types**](AlarmTypeApi.md#get_alarm_types) | **GET** /alarmtypes | Get list of all alarm types
-[**get_alarm_types_id**](AlarmTypeApi.md#get_alarm_types_id) | **GET** /alarmtypes/{id} | Get a single alarm type by its ID
-[**post_alarm_types**](AlarmTypeApi.md#post_alarm_types) | **POST** /alarmtypes | Create a new alarm type
-[**put_alarm_types**](AlarmTypeApi.md#put_alarm_types) | **PUT** /alarmtypes/{id} | Update an existing alarm type
+[**delete_recipients_recipient_id**](RecipientApi.md#delete_recipients_recipient_id) | **DELETE** /recipients/{recipient_id} | Delete a single recipient by its ID
+[**get_recipients**](RecipientApi.md#get_recipients) | **GET** /recipients | Get the list of all recipients
+[**get_recipients_recipient_id**](RecipientApi.md#get_recipients_recipient_id) | **GET** /recipients/{recipient_id} | Get a single recipient by its ID
+[**post_recipients**](RecipientApi.md#post_recipients) | **POST** /recipients | Create a new recipient
+[**put_recipients_recipient_id**](RecipientApi.md#put_recipients_recipient_id) | **PUT** /recipients/{recipient_id} | Update an existing recipient
 
 
 
-## delete_alarm_types
+## delete_recipients_recipient_id
 
-> delete_alarm_types(id)
-Delete a single alarm type by its ID
+> delete_recipients_recipient_id(recipient_id)
+Delete a single recipient by its ID
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **uuid::Uuid** | ID of the alarm type | [required] |
+**recipient_id** | **uuid::Uuid** | ID of the recipient | [required] |
 
 ### Return type
 
@@ -40,10 +40,10 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_alarm_types
+## get_recipients
 
-> models::ListWrapperAlarmType get_alarm_types()
-Get list of all alarm types
+> models::ListWrapperRecipient get_recipients()
+Get the list of all recipients
 
 ### Parameters
 
@@ -51,7 +51,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**models::ListWrapperAlarmType**](ListWrapper_AlarmType.md)
+[**models::ListWrapperRecipient**](ListWrapper_Recipient.md)
 
 ### Authorization
 
@@ -65,21 +65,21 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_alarm_types_id
+## get_recipients_recipient_id
 
-> models::AlarmType get_alarm_types_id(id)
-Get a single alarm type by its ID
+> models::Recipient get_recipients_recipient_id(recipient_id)
+Get a single recipient by its ID
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **uuid::Uuid** | ID of the alarm type | [required] |
+**recipient_id** | **uuid::Uuid** | ID of the recipient | [required] |
 
 ### Return type
 
-[**models::AlarmType**](AlarmType.md)
+[**models::Recipient**](Recipient.md)
 
 ### Authorization
 
@@ -93,21 +93,21 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## post_alarm_types
+## post_recipients
 
-> models::AlarmType post_alarm_types(new_alarm_type)
-Create a new alarm type
+> models::Recipient post_recipients(new_recipient)
+Create a new recipient
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | The alarm type to be created. | [required] |
+**new_recipient** | [**NewRecipient**](NewRecipient.md) | The receipient to be created | [required] |
 
 ### Return type
 
-[**models::AlarmType**](AlarmType.md)
+[**models::Recipient**](Recipient.md)
 
 ### Authorization
 
@@ -121,22 +121,22 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## put_alarm_types
+## put_recipients_recipient_id
 
-> models::AlarmType put_alarm_types(id, new_alarm_type)
-Update an existing alarm type
+> models::Recipient put_recipients_recipient_id(recipient_id, new_recipient)
+Update an existing recipient
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **uuid::Uuid** | ID of the alarm type | [required] |
-**new_alarm_type** | [**NewAlarmType**](NewAlarmType.md) | The updated alarm type | [required] |
+**recipient_id** | **uuid::Uuid** | ID of the recipient | [required] |
+**new_recipient** | [**NewRecipient**](NewRecipient.md) | The updated recipient | [required] |
 
 ### Return type
 
-[**models::AlarmType**](AlarmType.md)
+[**models::Recipient**](Recipient.md)
 
 ### Authorization
 
